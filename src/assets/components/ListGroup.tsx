@@ -1,22 +1,34 @@
-function ListGroup() {
-	let dynamicList = [
-		'New York',
-		'Los Angeles',
-		'Chicago',
-		'Houston',
-		'Phoenix',
-	];
+import { useState } from 'react';
+
+interface ListGroupProps {
+	heading: string;
+	list: string[];
+}
+
+function ListGroup(props: ListGroupProps) {
+	const [selectedItem, setSelectedItem] = useState(-1);
+
+	const { list, heading } = props;
 	return (
-		<div>
-			<h1>List</h1>
+		// generate single list item
+		<>
+			<h1>{heading}</h1>
 			<ul className="list-group">
-				{dynamicList.map((item) => (
-					<li key={item} className="list-group-item">
+				{list.map((item, index) => (
+					<li
+						key={item}
+						className={
+							selectedItem === index
+								? 'list-group-item active'
+								: 'list-group-item'
+						}
+						onClick={() => setSelectedItem(index)}
+					>
 						{item}
 					</li>
 				))}
 			</ul>
-		</div>
+		</>
 	);
 }
 
