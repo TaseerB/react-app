@@ -28,6 +28,9 @@ function ListGroup(props: ListGroupProps) {
 					</li>
 				))}
 			</ul>
+			<div className="mt-3 alert alert-info">
+				{selectedItem === -1 ? 'None' : list[selectedItem]}
+			</div>
 		</>
 	);
 }
